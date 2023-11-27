@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package tiendacliente.servidor;
 
-/**
- *
- * @author esanarru
- */
+import controlador.EncriptarPasswords;
+import controlador.UsuarioController;
+import modelo.ConexionBD;
+import modelo.Usuario;
+import vista.LoginForm;
+import vista.RegistroForm;
+
+
 public class TiendaClienteServidor {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        EncriptarPasswords encriptador = new EncriptarPasswords();
+        LoginForm login = new LoginForm();
+        login.show();
+        //UsuarioController controlador = new UsuarioController();
+        //System.out.println(controlador.getUsuario("Test1"));;
+        
     }
     
 }
