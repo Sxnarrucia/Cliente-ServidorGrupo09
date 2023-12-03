@@ -3,6 +3,8 @@ package tiendacliente.servidor;
 
 import controlador.EncriptarPasswords;
 import vista.LoginForm;
+import modelo.ActualizacionInventario;
+import modelo.ConexionBD;
 
 
 
