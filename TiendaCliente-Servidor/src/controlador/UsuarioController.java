@@ -1,55 +1,35 @@
 package controlador;
 
 import modelo.ConexionBD;
-import modelo.Usuario;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import modelo.Usuario;
 
 public class UsuarioController {
 
-    private ConexionBD conexion;
-    private ResultSet resultado = null;
-
-    public UsuarioController(ConexionBD conexion) {
-        this.conexion = conexion;
-    }
-
-    // Remove the default constructor or provide a meaningful implementation
-    /*
-    public UsuarioController() {
-        // You can provide a meaningful implementation or remove this constructor
-    }
-    */
+    ConexionBD conexion = new ConexionBD("root", "admin");
+    ResultSet resultado = null;
 
     public Boolean insertarUsuario(Usuario usuario) {
         try {
             conexion.setConexion();
-            conexion.setConsulta("INSERT INTO usuarios (username, password, email) VALUES (?, ?, ?)");
-            // Establecer los valores para la consulta utilizando PreparedStatement
-            conexion.getConsulta().setString(1, usuario.getNombreUsuario());
-            conexion.getConsulta().setString(2, usuario.getPassword());
-            conexion.getConsulta().setString(3, usuario.getEmail());
-
+            conexion.setConsulta("insert into usuarios (username, password, email) "
+                    + "values ('" + usuario.getNombreUsuario() + "', "
+                    + "'" + usuario.getPassword() + "', "
+                    + "'" + usuario.getEmail() + "')");
             if (conexion.getConsulta().executeUpdate() > 0) {
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conexion.cerrarConexion();
-        }
-        return false;
+        }return false;
     }
 
     public Usuario getUsuario(String usuario) {
         Usuario miUsuario = new Usuario();
         try {
             conexion.setConexion();
-            conexion.setConsulta("SELECT username, password, email FROM usuarios WHERE username = ?");
-            // Establecer el valor para la consulta utilizando PreparedStatement
-            conexion.getConsulta().setString(1, usuario);
-
+            conexion.setConsulta("select username, password, email from usuarios where username = '" + usuario + "' ");
             resultado = conexion.getResultado();
             while (resultado.next()) {
                 miUsuario = new Usuario();
@@ -60,8 +40,6 @@ public class UsuarioController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conexion.cerrarConexion();
         }
         return miUsuario;
     }
