@@ -19,15 +19,25 @@ public class RegistroForm extends javax.swing.JFrame {
     private ConexionBD conexionBD;
     private EncriptarPasswords encriptador;
     private UsuarioController controlador;
+    
 
     /**
      * Creates new form RegistroForm
      */
     public RegistroForm() {
         initComponents();
-        conexionBD = new ConexionBD("root", "Geaninna1");
+
+        // Create an instance of ConexionBD with the correct parameters
+        String url = "jdbc:mysql://127.0.0.1:3306/tienda?useSSL=false";
+        String username = "root";
+        String password = "admin";
+        ConexionBD newConexionBD = new ConexionBD(url, username, password);
+        new LoginForm(newConexionBD).setVisible(true);
+
+        conexionBD = new ConexionBD(url, username, password);
         encriptador = new EncriptarPasswords();
-        controlador = new UsuarioController();
+        controlador = new UsuarioController(conexionBD);
+
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
@@ -166,7 +176,8 @@ public class RegistroForm extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         this.dispose();
-        LoginForm login = new LoginForm();
+        
+        LoginForm login = new LoginForm(conexionBD);
         login.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
@@ -196,12 +207,11 @@ public class RegistroForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegistroForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RegistroForm().setVisible(true);
         });
     }
 
