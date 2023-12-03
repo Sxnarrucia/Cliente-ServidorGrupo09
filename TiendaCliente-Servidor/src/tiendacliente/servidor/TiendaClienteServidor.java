@@ -2,11 +2,8 @@
 package tiendacliente.servidor;
 
 import controlador.EncriptarPasswords;
-import controlador.UsuarioController;
-import modelo.ConexionBD;
-import modelo.Usuario;
 import vista.LoginForm;
-import vista.RegistroForm;
+
 
 
 public class TiendaClienteServidor {
