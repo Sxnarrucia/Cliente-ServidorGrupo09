@@ -80,6 +80,11 @@ public class LoginForm extends javax.swing.JFrame {
 
         JBInicioSesión.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         JBInicioSesión.setText("Iniciar Sesión");
+        JBInicioSesión.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInicioSesiónMouseClicked(evt);
+            }
+        });
         JBInicioSesión.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBInicioSesiónActionPerformed(evt);
@@ -169,6 +174,9 @@ public class LoginForm extends javax.swing.JFrame {
                 Password = decodificador.codificar(JTFPassword.getText().trim());
                 if (Password.equals(miUsuario.getPassword())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido al Sistema");
+                    this.dispose();
+                    MenuPrincipal menu = new MenuPrincipal();
+                    menu.show();
                 } else {
                     JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
                 }
@@ -190,6 +198,10 @@ public class LoginForm extends javax.swing.JFrame {
         RegistroForm registro = new RegistroForm();
         registro.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void JBInicioSesiónMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInicioSesiónMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBInicioSesiónMouseClicked
 
     /**
      * @param args the command line arguments

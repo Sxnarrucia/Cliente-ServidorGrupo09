@@ -22,7 +22,7 @@ public class TiendaClienteServidor {
         int idProductoVendido = 1;
         int cantidadVendida = 5;
         
-        ConexionBD conexionBD = new ConexionBD("username", "password");
+        ConexionBD conexionBD = new ConexionBD("root", "admin");
         if (conexionBD.setConexion()) {
             ActualizacionInventario actualizacionInventario = new ActualizacionInventario(conexionBD);
             actualizacionInventario.actualizarInventario(idProductoVendido, cantidadVendida);
