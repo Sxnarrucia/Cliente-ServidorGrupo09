@@ -16,7 +16,14 @@ public class TiendaClienteServidor {
         login.show();
         //UsuarioController controlador = new UsuarioController();
         //System.out.println(controlador.getUsuario("Test1"));;
+
+        int idProductoVendido = 1;
+        int cantidadVendida = 5;
         
+        ConexionBD conexionBD = new ConexionBD("username", "password");
+        if (conexionBD.setConexion()) {
+            ActualizacionInventario actualizacionInventario = new ActualizacionInventario(conexionBD);
+            actualizacionInventario.actualizarInventario(idProductoVendido, cantidadVendida);
+        }
     }
-    
 }
