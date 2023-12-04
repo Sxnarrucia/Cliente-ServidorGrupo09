@@ -23,9 +23,19 @@ public class VentasForm extends javax.swing.JFrame {
      */
     public VentasForm() {
         initComponents();
+        inicializarConexion();
+    }
+    
+    private void inicializarConexion() {
         ConexionBD conexion = new ConexionBD("root", "admin");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+
+        if (conexionBD.setConexion()) {
+            actualizacionInventario = new ActualizacionInventario(conexionBD);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        } 
     }
 
     /**
@@ -120,9 +130,9 @@ public class VentasForm extends javax.swing.JFrame {
             // actualización del inventario
             actualizacionInventario.actualizarInventario(idProducto, cantidadVendida);
 
-            JOptionPane.showMessageDialog(this, "Venta realizada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Venta realizada con exito", "exito", JOptionPane.INFORMATION_MESSAGE);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Ingrese valores numericos validos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese valores numericos validos", "error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JBvenderActionPerformed
 
