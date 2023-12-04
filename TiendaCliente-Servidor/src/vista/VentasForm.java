@@ -14,18 +14,20 @@ import javax.swing.JOptionPane;
  * @author Ayaka
  */
 public class VentasForm extends javax.swing.JFrame {
-    
+
     private ConexionBD conexionBD;
     private ActualizacionInventario actualizacionInventario;
-    
+
     /**
      * Creates new form VentasForn
      */
     public VentasForm() {
         initComponents();
         ConexionBD conexion = new ConexionBD("root", "admin");
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -148,7 +150,7 @@ public class VentasForm extends javax.swing.JFrame {
             return -1;
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
