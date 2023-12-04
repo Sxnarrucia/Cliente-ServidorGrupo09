@@ -35,6 +35,7 @@ public class VentasForm extends javax.swing.JFrame {
             actualizacionInventario = new ActualizacionInventario(conexionBD);
         } else {
             JOptionPane.showMessageDialog(this, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         } 
     }
 
