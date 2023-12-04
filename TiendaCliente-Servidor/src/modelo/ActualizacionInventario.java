@@ -13,7 +13,7 @@ public class ActualizacionInventario {
     public void actualizarInventario(int idProducto, int cantidadVendida) {
         try {
             // Actualiza la cantidad en el inventario
-            conexionBD.setConsulta("UPDATE inventario SET cantidad = cantidad - ? WHERE id_producto = ?");
+            conexionBD.setConsulta("UPDATE inventario SET cantidadProducto = cantidadProducto - ? WHERE idProducto = ?");
             conexionBD.getConsulta().setInt(1, cantidadVendida);
             conexionBD.getConsulta().setInt(2, idProducto);
             conexionBD.getConsulta().executeUpdate();

@@ -4,6 +4,8 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author esanarru
@@ -52,10 +54,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         JBChat.setText("Chat");
+        JBChat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBChatMouseClicked(evt);
+            }
+        });
 
         JBInventarios.setText("Inventarios");
+        JBInventarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBInventariosMouseClicked(evt);
+            }
+        });
 
         JBVentas.setText("Ventas");
+        JBVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JBVentasMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,6 +123,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         RegistroClienteForm registroCliente = new RegistroClienteForm();
         registroCliente.show();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void JBInventariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInventariosMouseClicked
+        JOptionPane.showMessageDialog(null, "Inventario en Proceso");
+    }//GEN-LAST:event_JBInventariosMouseClicked
+
+    private void JBChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBChatMouseClicked
+        JOptionPane.showMessageDialog(null, "Chat en Proceso");
+    }//GEN-LAST:event_JBChatMouseClicked
+
+    private void JBVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBVentasMouseClicked
+        this.dispose();
+        VentasForm venta = new VentasForm();
+        venta.show();
+    }//GEN-LAST:event_JBVentasMouseClicked
 
     /**
      * @param args the command line arguments

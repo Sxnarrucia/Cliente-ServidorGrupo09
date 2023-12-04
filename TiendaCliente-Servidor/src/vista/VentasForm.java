@@ -27,7 +27,7 @@ public class VentasForm extends javax.swing.JFrame {
     }
     
     private void inicializarConexion() {
-        ConexionBD conexion = new ConexionBD("root", "admin");
+        ConexionBD conexionBD = new ConexionBD("root", "admin");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
@@ -53,17 +53,16 @@ public class VentasForm extends javax.swing.JFrame {
         JBvender = new javax.swing.JButton();
         JLidProducto = new javax.swing.JLabel();
         JLcantidadProducto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JTFidProducto.setText("ID Producto");
         JTFidProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFidProductoActionPerformed(evt);
             }
         });
 
-        JTFcantidadProducto.setText("Cantidad");
         JTFcantidadProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFcantidadProductoActionPerformed(evt);
@@ -81,26 +80,35 @@ public class VentasForm extends javax.swing.JFrame {
 
         JLcantidadProducto.setText("Cantidad a vender:");
 
+        jLabel1.setText("Regresar al Menú Principal");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JLidProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JTFidProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JLcantidadProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JTFcantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(83, 83, 83))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(126, 126, 126)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTFidProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLidProducto))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTFcantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLcantidadProducto)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
                         .addComponent(JBvender)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(78, 78, 78))
+                        .addGap(16, 16, 16))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +123,9 @@ public class VentasForm extends javax.swing.JFrame {
                     .addComponent(JTFcantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(JBvender)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,6 +155,12 @@ public class VentasForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         JBvenderActionPerformed(evt);
     }//GEN-LAST:event_JTFcantidadProductoActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        this.dispose();
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.show();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     public int getIdProducto() {
         try {
@@ -203,5 +219,6 @@ public class VentasForm extends javax.swing.JFrame {
     private javax.swing.JLabel JLidProducto;
     private javax.swing.JTextField JTFcantidadProducto;
     private javax.swing.JTextField JTFidProducto;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

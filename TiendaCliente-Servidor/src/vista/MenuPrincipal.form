@@ -88,16 +88,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Chat"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JBChatMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBInventarios">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inventarios"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JBInventariosMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBVentas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ventas"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JBVentasMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
