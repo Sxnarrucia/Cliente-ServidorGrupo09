@@ -25,7 +25,18 @@ public class VentasForm extends javax.swing.JFrame {
         initComponents();
         inicializarConexion();
     }
+    
+    private void inicializarConexion() {
+        ConexionBD conexion = new ConexionBD("root", "admin");
 
+        if (conexionBD.setConexion()) {
+            actualizacionInventario = new ActualizacionInventario(conexionBD);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        } 
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,16 +122,16 @@ public class VentasForm extends javax.swing.JFrame {
     private void JBvenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBvenderActionPerformed
         // TODO add your handling code here:
         try {
-            // obtener los datos de la interfaz grafica
+            // obtener los datos de la interfaz gráfica
             int idProducto = Integer.parseInt(JTFidProducto.getText());
             int cantidadVendida = Integer.parseInt(JTFcantidadProducto.getText());
 
             // actualización del inventario
             actualizacionInventario.actualizarInventario(idProducto, cantidadVendida);
 
-            JOptionPane.showMessageDialog(this, "Venta realizada con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Venta realizada con exito", "exito", JOptionPane.INFORMATION_MESSAGE);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Ingrese valores numericos validos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese valores numericos validos", "error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JBvenderActionPerformed
 
@@ -132,18 +143,20 @@ public class VentasForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         JBvenderActionPerformed(evt);
     }//GEN-LAST:event_JTFcantidadProductoActionPerformed
-    
-    private void inicializarConexion() {
-        // Inicializar la conexión a la base de datos
-        conexionBD = new ConexionBD("username", "password");
+
+    public int getIdProducto() {
         try {
-            if (conexionBD.setConexion()) {
-                actualizacionInventario = new ActualizacionInventario(conexionBD);
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error en la conexion a la base de datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return Integer.parseInt(JTFidProducto.getText());
+        } catch (NumberFormatException ex) {
+            return -1;
+        }
+    }
+
+    public int getCantidadVendida() {
+        try {
+            return Integer.parseInt(JTFcantidadProducto.getText());
+        } catch (NumberFormatException ex) {
+            return -1;
         }
     }
     
