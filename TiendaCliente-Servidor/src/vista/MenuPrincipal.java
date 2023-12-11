@@ -129,7 +129,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBInventariosMouseClicked
 
     private void JBChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBChatMouseClicked
-        JOptionPane.showMessageDialog(null, "Chat en Proceso");
+        this.dispose();
+        ServidorForm servidor = new ServidorForm();
+        ClienteForm cliente = new ClienteForm();
+        servidor.show();
+        cliente.show();
     }//GEN-LAST:event_JBChatMouseClicked
 
     private void JBVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBVentasMouseClicked
