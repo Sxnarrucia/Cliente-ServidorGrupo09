@@ -125,7 +125,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void JBInventariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInventariosMouseClicked
-        JOptionPane.showMessageDialog(null, "Inventario en Proceso");
+        this.dispose();
+        VentasVisualizacionForm visualizar = new VentasVisualizacionForm();
+        visualizar.show();
     }//GEN-LAST:event_JBInventariosMouseClicked
 
     private void JBChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBChatMouseClicked
@@ -140,6 +142,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
         VentasForm venta = new VentasForm();
         venta.show();
+        
     }//GEN-LAST:event_JBVentasMouseClicked
 
     /**
