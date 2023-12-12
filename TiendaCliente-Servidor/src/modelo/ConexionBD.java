@@ -78,4 +78,8 @@ public class ConexionBD {
         }
 
     }
+    
+    public Connection obtenerConexion() {
+        return conexion;
+    }
 }
