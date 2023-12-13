@@ -4,21 +4,38 @@
  */
 package vista;
 
+import controlador.InventarioController;
+
 import javax.swing.JOptionPane;
+import controlador.InventarioListener;
+import modelo.InventarioModel;
+import controlador.InventarioController;
+import modelo.ConexionBD;
+import modelo.InventarioModel;
 
 /**
  *
  * @author esanarru
  */
-public class MenuPrincipal extends javax.swing.JFrame {
+public class MenuPrincipal extends javax.swing.JFrame implements Vista {
+    // ... el resto del código ...
 
-    /**
-     * Creates new form MenuPrincipal
-     */
-    public MenuPrincipal() {
+    private InventarioController inventarioController;
+
+    public MenuPrincipal(ConexionBD conexionBD) {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+
+        // Create instances of models and controllers
+        InventarioModel inventarioModel = new InventarioModel(conexionBD);
+        InventarioVista inventarioVista = new InventarioVista();
+        InventarioController inventarioController = new InventarioController(inventarioModel);
+
+        inventarioVista.setInventarioController(inventarioController);
+        inventarioController.setInventarioVista(inventarioVista);  // Add this line
+
+        this.inventarioController = inventarioController;  // Make sure to assign the controller to the class field
     }
 
     /**
@@ -125,9 +142,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void JBInventariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBInventariosMouseClicked
-        this.dispose();
-        VentasVisualizacionForm visualizar = new VentasVisualizacionForm();
-        visualizar.show();
+        if (inventarioController != null) {
+            inventarioController.mostrarSeccionInventario();
+        } else {
+            System.out.println("InventarioController is null");
+        }
+
     }//GEN-LAST:event_JBInventariosMouseClicked
 
     private void JBChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBChatMouseClicked
@@ -142,43 +162,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
         VentasForm venta = new VentasForm();
         venta.show();
-        
     }//GEN-LAST:event_JBVentasMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public static void main(String[] args) {
+        ConexionBD conexionBD = new ConexionBD("root", "Arceus10");
+        InventarioModel inventarioModel = new InventarioModel(conexionBD);
+        InventarioController inventarioController = new InventarioController(inventarioModel);
+        InventarioVista inventarioVista = new InventarioVista();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
+        inventarioVista.setInventarioController(inventarioController);
+        inventarioController.setInventarioVista(inventarioVista);
+        inventarioController.agregarListener(inventarioVista);
+        inventarioVista.mostrar();  // Add this line
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBChat;
@@ -187,4 +187,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel JLSistemaGestion;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarInventario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mostrarSeccionInventario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setInventarioController(InventarioController inventarioController) {
+        this.inventarioController = inventarioController;
+    }
+
 }

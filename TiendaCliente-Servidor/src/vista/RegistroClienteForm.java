@@ -171,7 +171,8 @@ public class RegistroClienteForm extends javax.swing.JFrame {
 
     private void JLRegresarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLRegresarMenuMouseClicked
         this.dispose();
-        MenuPrincipal menu = new MenuPrincipal();
+        MenuPrincipal menu = new MenuPrincipal(conexionBD);
+
         menu.show();
     }//GEN-LAST:event_JLRegresarMenuMouseClicked
 

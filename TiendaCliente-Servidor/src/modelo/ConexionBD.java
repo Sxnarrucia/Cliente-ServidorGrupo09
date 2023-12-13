@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConexionBD {
-    //Datos de gestion de BD
+   
 
     Connection conexion = null;
     PreparedStatement consulta = null;
@@ -82,4 +82,8 @@ public class ConexionBD {
     public Connection obtenerConexion() {
         return conexion;
     }
+
+    public Connection getConexion() {
+    return conexion;
+}
 }

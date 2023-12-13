@@ -8,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import modelo.ConexionBD;
 
 /**
  *
@@ -113,7 +114,9 @@ public class ServidorForm extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         this.dispose();
-        MenuPrincipal menu = new MenuPrincipal();
+        ConexionBD conexionBD = null;
+        MenuPrincipal menu = new MenuPrincipal(conexionBD);
+
         menu.show();
     }//GEN-LAST:event_jLabel2MouseClicked
 
