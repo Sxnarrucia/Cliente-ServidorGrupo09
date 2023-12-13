@@ -175,18 +175,20 @@ public class LoginForm extends javax.swing.JFrame {
                 if (Password.equals(miUsuario.getPassword())) {
                     JOptionPane.showMessageDialog(null, "Bienvenido al Sistema");
                     this.dispose();
-                    MenuPrincipal menu = new MenuPrincipal();
+
+                    // Pasar la conexión a MenuPrincipal
+                    MenuPrincipal menu = new MenuPrincipal(conexionBD);
                     menu.show();
                 } else {
                     JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Error al conectar");
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese el usuario y la contraseña");
         }
+
     }//GEN-LAST:event_JBInicioSesiónActionPerformed
 
     private void JLInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLInicioSesionMouseClicked
